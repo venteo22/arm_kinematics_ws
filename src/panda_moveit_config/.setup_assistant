@@ -8,4 +8,4 @@ moveit_setup_assistant_config:
   CONFIG:
     author_name: Manel Puig
     author_email: manel.puig@ub.edu
-    generated_timestamp: 1620469349
+    generated_timestamp: 1620560123
