@@ -20,9 +20,16 @@
     <group_state name="Home" group="Arm">
         <joint name="Four_joint" value="0" />
         <joint name="One_joint" value="0" />
-        <joint name="Three_joint" value="1.8918" />
-        <joint name="Two_joint" value="3.1415" />
+        <joint name="Three_joint" value="0" />
+        <joint name="Two_joint" value="0" />
     </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="Hand" parent_link="Four" group="Arm" />
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="Four" link2="Three" reason="Adjacent" />
+    <disable_collisions link1="Four" link2="Two" reason="Never" />
+    <disable_collisions link1="One" link2="Two" reason="Adjacent" />
+    <disable_collisions link1="One" link2="base_link" reason="Adjacent" />
+    <disable_collisions link1="Three" link2="Two" reason="Adjacent" />
+    <disable_collisions link1="Two" link2="base_link" reason="Never" />
 </robot>
