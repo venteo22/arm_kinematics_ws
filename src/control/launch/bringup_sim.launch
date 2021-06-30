@@ -1,7 +1,7 @@
 <launch>
   <arg name="sim" default="true" />
   <arg name="limited" default="true"/>
-  <!-- Launch ur5e -->
+  <!-- Launch simple_arm -->
    <include file="$(find ur_e_gazebo)/launch/ur5e.launch">
     <arg name="limited" default="$(arg limited)"/>
   </include>
