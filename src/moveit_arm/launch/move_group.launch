@@ -52,7 +52,7 @@
 
   <!-- Planning Functionality -->
   <include ns="move_group" file="$(find moveit_arm)/launch/planning_pipeline.launch.xml">
-    <arg name="pipeline" value="$(arg pipeline)" />
+    <arg name="pipeline" value="ompl" />
     <!-- YA ESTABA <param name="capabilities" value="$(arg capabilities)"/> -->
     <!-- YA ESTABA <param name="disable_capabilities" value="$(arg disable_capabilities)"/> -->
   </include>
