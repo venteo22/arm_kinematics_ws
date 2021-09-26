@@ -5,8 +5,8 @@
   <description>
      An automatically generated package with all the configuration and launch files for using the luqman_bot with the MoveIt! Motion Planning Framework
   </description>
-  <author email="sergio.venteo2222@gmail.com">Sergio</author>
-  <maintainer email="sergio.venteo2222@gmail.com">Sergio</maintainer>
+  <author email="sergio.venteo2222@gmail.com">sergio</author>
+  <maintainer email="sergio.venteo2222@gmail.com">sergio</maintainer>
 
   <license>BSD</license>
 

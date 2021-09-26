@@ -1,11 +1,5 @@
 <launch>
 
-  <arg name="limited" default="false"/>
-  
-    <include file="$(find moveit_arm)/launch/planning_context.launch">
-      <arg name="limited" value="$(arg limited)" />
-    </include>
-
   <!-- GDB Debug Option -->
   <arg name="debug" default="false" />
   <arg unless="$(arg debug)" name="launch_prefix" value="" />
@@ -18,16 +12,16 @@
   <arg     if="$(arg info)" name="command_args" value="--debug" />
 
   <!-- move_group settings -->
-  <!-- YA ESTABA <arg name="pipeline" default="ompl" /> -->
+  <arg name="pipeline" default="ompl" />
   <arg name="allow_trajectory_execution" default="true"/>
   <arg name="fake_execution" default="false"/>
-  <!-- YA ESTABA <arg name="execution_type" default="interpolate"/> --> <!-- set to 'last point' to skip intermediate trajectory in fake execution -->
+  <!--CAMBIO <arg name="execution_type" default="interpolate"/>--> <!-- set to 'last point' to skip intermediate trajectory in fake execution -->
   <arg name="max_safe_path_cost" default="1"/>
   <arg name="jiggle_fraction" default="0.05" />
   <arg name="publish_monitored_planning_scene" default="true"/>
 
-  <!--YA ESTABA <arg name="capabilities" default=""/> -->
-  <!-- YA ESTABA <arg name="disable_capabilities" default=""/> -->
+  <arg name="capabilities" default=""/>
+  <arg name="disable_capabilities" default=""/>
   <!-- load these non-default MoveGroup capabilities (space seperated) -->
   <!--
   <arg name="capabilities" value="
@@ -44,17 +38,17 @@
                 " />
   -->
 
-  <!-- YA ESTABA <arg name="load_robot_description" default="true" /> -->
+  <arg name="load_robot_description" default="true" />
   <!-- load URDF, SRDF and joint_limits configuration -->
-  <!-- YA ESTABA <include file="$(find moveit_arm)/launch/planning_context.launch">
+  <include file="$(find moveit_arm)/launch/planning_context.launch">
     <arg name="load_robot_description" value="$(arg load_robot_description)" />
-  </include> -->
+  </include>
 
   <!-- Planning Functionality -->
   <include ns="move_group" file="$(find moveit_arm)/launch/planning_pipeline.launch.xml">
-    <arg name="pipeline" value="ompl" />
-    <!-- YA ESTABA <param name="capabilities" value="$(arg capabilities)"/> -->
-    <!-- YA ESTABA <param name="disable_capabilities" value="$(arg disable_capabilities)"/> -->
+    <arg name="pipeline" value="$(arg pipeline)" />
+    <param name="capabilities" value="$(arg capabilities)"/>
+    <param name="disable_capabilities" value="$(arg disable_capabilities)"/>
   </include>
 
   <!-- Trajectory Execution Functionality -->
@@ -62,7 +56,7 @@
     <arg name="moveit_manage_controllers" value="true" />
     <arg name="moveit_controller_manager" value="luqman_bot" unless="$(arg fake_execution)"/>
     <arg name="moveit_controller_manager" value="fake" if="$(arg fake_execution)"/>
-    <!-- YA ESTABA <arg name="execution_type" value="$(arg execution_type)" /> -->
+    <!--CAMBIO <arg name="execution_type" value="$(arg execution_type)" /> -->
   </include>
 
   <!-- Sensors Functionality -->
@@ -78,20 +72,6 @@
     <param name="allow_trajectory_execution" value="$(arg allow_trajectory_execution)"/>
     <param name="max_safe_path_cost" value="$(arg max_safe_path_cost)"/>
     <param name="jiggle_fraction" value="$(arg jiggle_fraction)" />
-
-    <!-- MoveGroup capabilities to load -->
-    <!-- ESTO ES NUEVO -->
-    <param name="capabilities" value="move_group/MoveGroupCartesianPathService
-    move_group/MoveGroupExecuteService
-    move_group/MoveGroupKinematicsService
-    move_group/MoveGroupMoveAction
-    move_group/MoveGroupPickPlaceAction
-    move_group/MoveGroupPlanService
-    move_group/MoveGroupQueryPlannersService
-    move_group/MoveGroupStateValidationService
-    move_group/MoveGroupGetPlanningSceneService
-    move_group/ClearOctomapService
-    " />
 
 
     <!-- Publish the planning scene of the physical robot so that rviz plugin can know actual robot -->
